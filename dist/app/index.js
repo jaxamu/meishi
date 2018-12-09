@@ -12,6 +12,7 @@ const KoaMulter = require("koa-multer");
 const mime = require("mime");
 const url = require("url");
 const querystring = require("querystring");
+const configs = require("../config/config.json");
 const app = new Koa();
 /**
  * 接收两个参数
@@ -124,4 +125,6 @@ __dirname + '/controllers/**/*.js', {
         storage
     }
 });
-app.listen(7777);
+const env = process.env.NODE_ENV || 'development';
+const config = configs[env];
+app.listen(config.web.port);
