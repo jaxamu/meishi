@@ -19,9 +19,9 @@
   },
   "production": {
     "username": "root",
-    "password": null,
-    "database": "miaov_development",
-    "host": "127.0.0.1",
+    "password": "zhongyi7612432!!",
+    "database": "meishi",
+    "host": "172.19.0.17",
     "dialect": "mysql",
     "timezone": "+08:00",
     "seederStorage": "sequelize",
