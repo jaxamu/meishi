@@ -11,6 +11,7 @@ import * as mime from 'mime';
 import * as url from 'url';
 import * as querystring from 'querystring';
 import * as configs from '../config/config.json';
+import * as fs from 'fs';
 
 const app = new Koa();
 
@@ -142,6 +143,16 @@ useControllers(
         }
     }
 );
+
+app.use(async (ctx, next) => {
+    if (ctx.response.status == 404) {
+        if (ctx.req.url.startsWith('/public/admin')) {
+            let content = fs.readFileSync( process.cwd() + '/static/admin/index.html' ).toString();
+
+            ctx.body = content;
+        }
+    }
+});
 
 const env = process.env.NODE_ENV || 'development';
 const config = configs[env];
